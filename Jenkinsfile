@@ -1,5 +1,12 @@
 pipeline {
     agent any
+    environment {
+        // Define any environment variables, such as paths or credentials
+        ANSIBLE_HOME = '/usr/local/bin' // Path to Ansible binary (if it's custom)
+        INVENTORY_FILE = '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yml'
+        PLAYBOOK_FILE = 'ssh-keygencopy.yml'
+    }
+
 
     stages {
         
@@ -26,6 +33,15 @@ pipeline {
                 }
             }
         }
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    // Run the Ansible playbook using the ansible-playbook command
+                    sh """
+                        ansible-playbook -i ${INVENTORY_FILE} ${PLAYBOOK_FILE}
+                    """
+                }
+            }
         
         stage('Ansible Deployment') {
             steps {
