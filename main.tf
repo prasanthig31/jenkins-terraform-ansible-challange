@@ -45,7 +45,7 @@ resource "aws_instance" "ubuntu_vm" {
     command = <<EOT
       echo "[backend]" >> inventory.yml
       echo "u21.local" >> inventory.yml
-      echo "[all]" 
+      echo "[all]" >> inventory.yml
       echo "u21.local ansible_user=ubuntu ansible_ssh_private_key_file=/root/.ssh/net.pem" >> inventory.yml
       echo "c8.local ansible_user=ec2-user ansible_ssh_private_key_file=/root/.ssh/net.pem" >> inventory.yml
 
