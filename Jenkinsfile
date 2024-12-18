@@ -3,7 +3,7 @@ pipeline {
     environment {
         // Define any environment variables, such as paths or credentials
         ANSIBLE_HOME = '/usr/local/bin' // Path to Ansible binary (if it's custom)
-        INVENTORY_FILE = '/var/lib/jenkins/workspace/inventory.yml'
+        INVENTORY_FILE = '/var/lib/jenkins/workspace/jenkins-terraform-ansible-challange/inventory.yml'
         PLAYBOOK_FILE = 'ssh-keygencopy.yml'
     }
 
@@ -22,7 +22,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    dir('/var/lib/jenkins/workspace/') {
+                    dir('/var/lib/jenkins/workspace/jenkins-terraform-ansible-challange') {
                     sh 'pwd'
                     sh 'terraform init'
                     sh 'terraform validate'
