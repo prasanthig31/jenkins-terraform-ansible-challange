@@ -42,7 +42,7 @@ pipeline {
                     """
                 }
             }
-        
+        }
         stage('Ansible Deployment') {
             steps {
                 script {
