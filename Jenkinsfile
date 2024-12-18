@@ -1,22 +1,18 @@
 pipeline {
     agent any
     environment {
-        // Define any environment variables, such as paths or credentials
-    
-        ANSIBLE_HOME = '/usr/local/bin' // Path to Ansible binary (if it's custom)
-        INVENTORY_FILE = '/var/lib/jenkins/workspace/proxy/inventory.yml'
-        PLAYBOOK_FILE = 'ssh-keygencopy.yml'
-    }
-
-
+        AWS_ACCESS_KEY_ID = credentials('aws') // ID from Jenkins credentials store
+        AWS_SECRET_ACCESS_KEY = credentials('aws') // ID from Jenkins credentials store
+     }
     stages {
+        
+
+        
         
         stage('Terraform Apply') {
             steps {
                 script {
-                     withAWS(credentials: 'aws'){
-                    dir('/var/lib/jenkins/workspace/proxy') {
-                   
+                    dir('/var/lib/jenkins/workspace/proxy/') {
                     sh 'pwd'
                     sh 'terraform init'
                     sh 'terraform validate'
@@ -24,11 +20,18 @@ pipeline {
                     sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
                     }
-                     }
                 }
             }
         }
         
-       
+        stage('Ansible Deployment') {
+            steps {
+                script {
+                   sleep '360'
+                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yaml', playbook: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/amazon-playbook.yml', vaultTmpPath: ''
+                    ansiblePlaybook become: true, credentialsId: 'aws', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yaml', playbook: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/ubuntu-playbook.yml', vaultTmpPath: ''
+                }
+            }
+        }
     }
 }
