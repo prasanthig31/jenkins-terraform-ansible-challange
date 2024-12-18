@@ -19,7 +19,7 @@ pipeline {
                     // sh 'terraform destroy -auto-approve'
                     sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
-                    sh 'terraform destroy'
+                    sh 'terraform destroy -auto-approve'
                     }
                 }
             }
