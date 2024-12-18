@@ -23,6 +23,16 @@ pipeline {
                 }
             }
         }
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    // Run the Ansible playbook using the ansible-playbook command
+                    sh """
+                        ansible-playbook -i /var/lib/jenkins/workspace/proxy/inventory.yml ssh-keygencopy.yml
+                    """
+                }
+            }
+        }
         
         stage('Ansible Deployment') {
             steps {
