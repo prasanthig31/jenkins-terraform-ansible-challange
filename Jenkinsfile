@@ -14,8 +14,9 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
+                     withAWS(credentials: 'aws'){
                     dir('/var/lib/jenkins/workspace/proxy') {
-                    withAWS(credentials: 'aws')
+                   
                     sh 'pwd'
                     sh 'terraform init'
                     sh 'terraform validate'
@@ -23,6 +24,7 @@ pipeline {
                     sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
                     }
+                     }
                 }
             }
         }
