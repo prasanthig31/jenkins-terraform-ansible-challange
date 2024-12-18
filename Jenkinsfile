@@ -3,7 +3,7 @@ pipeline {
     environment {
         // Define any environment variables, such as paths or credentials
         ANSIBLE_HOME = '/usr/local/bin' // Path to Ansible binary (if it's custom)
-        INVENTORY_FILE = '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yml'
+        INVENTORY_FILE = '/var/lib/jenkins/workspace/inventory.yml'
         PLAYBOOK_FILE = 'ssh-keygencopy.yml'
     }
 
