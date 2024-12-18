@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         // Define any environment variables, such as paths or credentials
-        AWS_ACCESS_KEY_ID = credentials('aws') // ID from Jenkins credentials store
-        AWS_SECRET_ACCESS_KEY = credentials('aws') // ID from Jenkins credentials store
+        AWS_ACCESS_KEY_ID = credentials('aws_access_key_id_credential_id') // ID from Jenkins credentials store
+        AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key_credential_id') // ID from Jenkins credentials store
         ANSIBLE_HOME = '/usr/local/bin' // Path to Ansible binary (if it's custom)
         INVENTORY_FILE = '/var/lib/jenkins/workspace/proxy/inventory.yml'
         PLAYBOOK_FILE = 'ssh-keygencopy.yml'
