@@ -15,6 +15,7 @@ pipeline {
             steps {
                 script {
                     dir('/var/lib/jenkins/workspace/proxy') {
+                    withAWS(credentials: 'aws')
                     sh 'pwd'
                     sh 'terraform init'
                     sh 'terraform validate'
