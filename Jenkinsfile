@@ -12,15 +12,6 @@ pipeline {
 
     stages {
         
-
-        stage('Checkout') {
-            steps {
-                deleteDir()
-                sh 'echo cloning repo'
-                sh 'git clone https://github.com/prasanthig31/jenkins-terraform-ansible-challange.git' 
-            }
-        }
-        
         stage('Terraform Apply') {
             steps {
                 script {
