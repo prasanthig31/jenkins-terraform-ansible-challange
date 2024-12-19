@@ -11,5 +11,5 @@ variable instance_type {
     default = "t2.large"
  }
  variable "ami_ubuntu" {
-    default = "ami-0a628e1e89aaedf80"
+    default = "ami-0745b7d4092315796"
  }
