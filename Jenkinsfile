@@ -19,7 +19,18 @@ pipeline {
                     // sh 'terraform destroy -auto-approve'
                     sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
+                    sh 'terraform destroy -auto-approve'
                     }
+                }
+            }
+        }
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    // Run the Ansible playbook using the ansible-playbook command
+                    sh """
+                        ansible-playbook -i /var/lib/jenkins/workspace/proxy/inventory.yml sshkeycopy.yml
+                    """
                 }
             }
         }
