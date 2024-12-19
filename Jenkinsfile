@@ -28,7 +28,7 @@ pipeline {
                 script {
                     // Run the Ansible playbook using the ansible-playbook command
                     sh """
-                        ansible-playbook -i /var/lib/jenkins/workspace/proxy/inventory.yml sshkeycopy.yml
+                        ansible-playbook -i /var/lib/jenkins/workspace/proxy/inventory.yml /var/lib/jenkins/workspace/proxy/sshkeycopy.yml
                     """
                 }
             }
