@@ -24,7 +24,7 @@
           server {
               listen 80;
 
-              server_name u21.local;  # Use the hostname or specify a domain name
+              server_name c8.local;  # Use the hostname or specify a domain name
 
               location / {
                   proxy_pass http://127.0.0.1:19999;  # Proxy to Netdata on port 19999
