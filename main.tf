@@ -20,7 +20,7 @@ resource "aws_instance" "amazon_linux_vm" {
 
   provisioner "local-exec" {
     command = <<EOT
-      echo "[frontend]" > inventory.yml
+      echo "[frontend]" >> inventory.yml
       echo "c8.local" >> inventory.yml
     EOT
   }
