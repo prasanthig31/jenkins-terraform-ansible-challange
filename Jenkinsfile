@@ -19,18 +19,16 @@ pipeline {
                     // sh 'terraform destroy -auto-approve'
                     sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
-                    sh 'terraform destroy -auto-approve'
                     }
                 }
             }
         }
-        stage('Run Ansible Playbook') {
+        stage('Ansible Deployment') {
             steps {
                 script {
-                    // Run the Ansible playbook using the ansible-playbook command
-                    sh """
-                        ansible-playbook -i /var/lib/jenkins/workspace/proxy/inventory.yml /var/lib/jenkins/workspace/proxy/sshkeycopy.yml
-                    """
+                   sleep '360'
+                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'ec2-user', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yaml', playbook: '/var/lib/jenkins/workspace/proxy/frontend.yml', vaultTmpPath: ''
+                    ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yaml', playbook: '/var/lib/jenkins/workspace/proxy/backend.yml', vaultTmpPath: ''
                 }
             }
         }
