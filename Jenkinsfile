@@ -34,14 +34,6 @@ pipeline {
             }
         }
         
-        stage('Ansible Deployment') {
-            steps {
-                script {
-                   sleep '360'
-                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yaml', playbook: '/var/lib/jenkins/workspace/proxy/frontend.yml', vaultTmpPath: ''
-                    ansiblePlaybook become: true, credentialsId: 'aws', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yaml', playbook: '/var/lib/jenkins/workspace/proxy/backend.yml', vaultTmpPath: ''
-                }
-            }
-        }
+      
     }
 }
