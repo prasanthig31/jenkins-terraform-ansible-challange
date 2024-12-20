@@ -17,20 +17,10 @@
         name: nginx
         state: present
       become: true
-    - name: Configure NGINX as a proxy to Netdata
-      copy:
-        dest: /etc/nginx/conf.d/netdata_proxy.conf
-        content: |
-          server {
-              listen 80;
-
-              server_name {{ ansible_hostname }};  # Use the hostname or specify a domain name
-
-              location / {
-                  proxy_pass http://127.0.0.1:19999;  # Proxy to Netdata on port 19999
-                  
-              }
-          }
+    - name: Configure Nginx proxy
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
       notify:
         - restart nginx
     - name: Ensure NGINX is running and enabled
