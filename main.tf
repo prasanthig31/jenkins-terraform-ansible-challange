@@ -48,6 +48,7 @@ resource "aws_instance" "ubuntu_vm" {
       echo "[all]" >> inventory.yml
       echo "u21.local ansible_user=ubuntu ansible_ssh_private_key_file=/root/.ssh/mum.pem" >> inventory.yml
       echo "c8.local ansible_user=ec2-user ansible_ssh_private_key_file=/root/.ssh/mum.pem" >> inventory.yml
+      echo "${self.public_ip} u21.local" >> /etc/hosts
 
     EOT
   }
