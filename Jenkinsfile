@@ -27,8 +27,8 @@ pipeline {
             steps {
                 script {
                    sleep '360'
-                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'ec2-user', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yaml', playbook: '/var/lib/jenkins/workspace/proxy/frontend.yml', vaultTmpPath: ''
-                    ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yaml', playbook: '/var/lib/jenkins/workspace/proxy/backend.yml', vaultTmpPath: ''
+                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'ec2-user', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yml', playbook: '/var/lib/jenkins/workspace/proxy/frontend.yml', vaultTmpPath: ''
+                    ansiblePlaybook becomeUser: 'ubuntu', credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/proxy/inventory.yml', playbook: '/var/lib/jenkins/workspace/proxy/backend.yml', vaultTmpPath: ''
                 }
             }
         }
