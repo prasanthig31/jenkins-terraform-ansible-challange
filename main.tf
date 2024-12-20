@@ -20,7 +20,7 @@ resource "aws_instance" "amazon_linux_vm" {
 
   provisioner "local-exec" {
     command = <<EOT
-      echo "[frontend]" >> inventory.yml
+      echo "[frontend]" > inventory.yml
       echo "c8.local" >> inventory.yml
     EOT
   }
@@ -46,8 +46,8 @@ resource "aws_instance" "ubuntu_vm" {
       echo "[backend]" >> inventory.yml
       echo "u21.local" >> inventory.yml
       echo "[all]" >> inventory.yml
-      echo "u21.local ansible_user=ubuntu ansible_ssh_private_key_file=/root/.ssh/net.pem" >> inventory.yml
-      echo "c8.local ansible_user=ec2-user ansible_ssh_private_key_file=/root/.ssh/net.pem" >> inventory.yml
+      echo "u21.local ansible_user=ubuntu ansible_ssh_private_key_file=/root/.ssh/mum.pem" >> inventory.yml
+      echo "c8.local ansible_user=ec2-user ansible_ssh_private_key_file=/root/.ssh/mum.pem" >> inventory.yml
 
     EOT
   }
