@@ -2,7 +2,7 @@ variable "region" {
     default = "ap-south-1"
 }
 variable "key_name" {
-    default = "net"
+    default = "mum"
 }
 variable "ami_linux" {
     default = "ami-0327f51db613d7bd2"
